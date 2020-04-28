@@ -4,7 +4,7 @@ Create a directory, for example `sapper-app`
 
 Clone this repo and and place under `sapper-app` directory
 
-Rename this project for example, `landing-page-sapper-app`
+Rename this project to for example, `landing-page-sapper-app`
 
 Change directory 
 ```
