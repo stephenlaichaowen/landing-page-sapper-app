@@ -40,7 +40,7 @@
   <h1>
     <img
       width="150"
-      height="40"
+      height="60"
       class="logo"
       src="https://i.ya-webdesign.com/images/burger-logo-png-4.png"
       alt="MacBurger" />
