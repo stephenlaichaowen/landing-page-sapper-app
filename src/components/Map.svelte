@@ -2,37 +2,55 @@
   import langStore from './stores/langStore.js'
   import { onMount } from 'svelte'
 
-  let name;
-  let tel;
-  let email;
-  let number = 0;
-  let select = "notneed";
-  let nameError = false;
-  let telError = false;
-  let emailError = false;
-  let numberError = false;
+  let name
+  let tel
+  let email
+  let number = 0
+  let select = "notneed"
+  let nameError = false
+  let telError = false
+  let emailError = false
+  let numberError = false
   let tinymap
   let lang 
+  let markerTitle = ''
 
-  $: if (name != "") nameError = false;
-  $: if (tel != "") telError = false;
-  $: if (email != "") emailError = false;
-  $: if (number != 0) numberError = false;
+  $: if (name != "") nameError = false
+  $: if (tel != "") telError = false
+  $: if (email != "") emailError = false
+  $: if (number != 0) numberError = false
+  $: if (lang) markerTitle = '<p>BackYard Burger</p>'
+  $: if (!lang) markerTitle = '<p>後院漢堡</p>'
 
   onMount(() => {
-    langStore.subscribe(value => {
+    langStore.subscribe(value => { 
       lang = value
+      if (lang) markerTitle = '<p>BackYard Burger</p>'
+      if (!lang) markerTitle = '<p>後院漢堡</p>'
+     })
+  
+    const mymap = L.map('tinymap', {
+      center: [25.0285535, 121.5406971],
+      zoom: 16
     })
 
-    const mymap = L.map('tinymap').setView([51.505, -0.09], 13);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      maxZoom: 18,
-      id: 'mapbox/streets-v11',
-      tileSize: 512,
-      zoomOffset: -1,
-      accessToken: 'your.mapbox.access.token'
-    }).addTo(mymap);
+    var greenIcon = new L.Icon({
+      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
+
+    // 載入 openstreetmap 圖資
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'      
+    }).addTo(mymap)
+       
+    L.marker([25.0285535, 121.5406971], {icon: greenIcon,}).addTo(mymap)     
+      .bindPopup(markerTitle)
+      .openPopup()    
   })
 
   function cancelOrder() {
@@ -78,9 +96,7 @@
     number = 0;
 
     alert(`Your order has been successfully submitted !`)
-  }
-
-  
+  }  
 </script>
 
 <div class="map">

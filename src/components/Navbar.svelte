@@ -19,21 +19,6 @@
       lang = value
     })
   })
-
-  let scrolled
-  function scrollToFeature() {
-    // window.addEventListener('scroll', () => {
-    //   scrolled = window.scrollY
-    //   console.log(`y-axis: ${scrolled}`);
-    //   scrolled = 440
-      
-    // })
-    window.innerHeight -= 500
-  }
-
-  function scrollToChef() {}
-
-  function scrollToMap() {}
 </script>
 
 <div class="top">
@@ -46,9 +31,9 @@
       alt="MacBurger" />
   </h1>
 
-  <ul class="nav" class:show={menu}>
+  <ul class="nav">
     <li>
-      <a href="#/" class="ToFeature" on:click={scrollToFeature}>
+      <a href="#/" class="ToFeature">
         {#if lang}
           Features
         {:else}
@@ -57,7 +42,7 @@
       </a>
     </li>
     <li>
-      <a href="#/" class="ToChief" on:click={scrollToChef}>
+      <a href="#/" class="ToChief">
         {#if lang}
           Chef
         {:else}
@@ -66,7 +51,7 @@
       </a>
     </li>
     <li>
-      <a href="#/" class="ToMap" on:click={scrollToMap}>
+      <a href="#/" class="ToMap">
         {#if lang}
           Map
         {:else}
@@ -75,9 +60,7 @@
       </a>
     </li>
     <li>
-      <a href="#/" class="ToMap" on:click|preventDefault={switchLanguage} style="display: flex; align-items: end">
-        <!-- A/文 -->
-        <!-- <i class="fas fa-language"></i> -->
+      <a href="#/" class="ToMap" on:click|preventDefault={switchLanguage} style="display: flex; align-items: end">        
         <i class="fas fa-globe"></i>
       </a>
     </li>
@@ -131,6 +114,7 @@
     display: none;
     font-size: 30px;
   }
+
   @media (max-width: 575px) {
     .showmenu {
       display: block;
@@ -140,15 +124,20 @@
       color: #fff;
     }
   }
+
   .logo {
     float: left;
     margin-left: 42px;
-    padding-top: 16px;
+    padding-top: 10px;
   }
-  /* 	.menuShow {
+  
+  /* .menuShow {
 		display: block;
 	} */
-  /* 	@media (max-width: 575px) {
-  .menuShow .nav {
-    max-height: 500px; } } */
+  
+  @media (max-width: 575px) {
+    /* .menuShow .nav {
+      max-height: 500px; 
+    }  */
+  }
 </style>

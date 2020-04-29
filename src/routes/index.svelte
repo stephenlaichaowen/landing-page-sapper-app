@@ -14,15 +14,15 @@
   const LOCAL_STORAGE_LIST_KEY = 'stephen.todolist'
 
   onMount(() => {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY
-      console.log(`y-axis: ${scrolled}`);
-    })
+    // window.addEventListener('scroll', () => {
+    //   const scrolled = window.scrollY
+    //   console.log(`y-axis: ${scrolled}`);
+    // })
 
-    localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify({ name: 'stephen lai' }))
+    // localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify({ name: 'stephen lai' }))
 
-    todolist = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []  
-    console.log(todolist)
+    // todolist = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || []  
+    // console.log(todolist)
   })
 
 </script>
@@ -35,9 +35,9 @@
 		 </div>
 	 </div>
 	 <div class="container">
-		 <Feature />
+		 <!-- <Feature />
 		 <Chef />
-		 <Avatar />
+		 <Avatar /> -->
 		 <Map />
 	 </div>
 	 <Footer />
