@@ -3,7 +3,7 @@
   import featureStore from './stores/featureStore.js'
   import { onMount } from 'svelte'
 
-  let lang 
+  let lang = true
   let data = []
   
   onMount(() => {

@@ -3,7 +3,7 @@
   import avatarStore from './stores/avatarStore.js'
   import { onMount } from 'svelte'
 
-  let lang 
+  let lang = true
   let data = []
   
   onMount(() => {

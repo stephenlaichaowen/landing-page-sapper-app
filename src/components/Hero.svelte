@@ -2,7 +2,7 @@
   import langStore from './stores/langStore.js'
   import { onMount } from 'svelte'
 
-  let lang 
+  let lang = true
 
   onMount(() => {
     langStore.subscribe(value => {

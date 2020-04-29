@@ -12,7 +12,7 @@
   let emailError = false
   let numberError = false
   let tinymap
-  let lang 
+  let lang = true
   let markerTitle = ''
 
   $: if (name != "") nameError = false

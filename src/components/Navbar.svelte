@@ -3,7 +3,7 @@
   import { onMount } from 'svelte'
 
   let menu = false;
-  let lang
+  let lang = true
 
   function toggleMenu() {
     menu = !menu   
