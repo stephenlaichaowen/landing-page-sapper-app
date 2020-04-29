@@ -4,9 +4,12 @@
   import { onMount } from 'svelte'
 
   let lang = true
+  let loading = false
   let data = []
   
   onMount(() => {
+    loading = true
+
     langStore.subscribe(value => {
       lang = value
     })
@@ -36,29 +39,33 @@
     </span>
   </div>
   <ul>
-    {#each data as item}
-      <li>
-        <img
-          src={item.image}
-          alt="" />
-        <span>
-          {#if lang}
-            {item.titleEng}
-          {:else}
-            {item.titleChn}
-          {/if}
-        </span>
-        <p>
-          {#if lang}
-            {item.contentEng}
-          {:else}
-            {item.contentChn}          
-          {/if}        
-        </p>
-      </li>
-    {:else}
-      <p>There are no data, please check store</p>
-    {/each}   
+    
+  {#each data as item}
+    <li>         
+      <img
+        src={item.image}
+        alt="" />
+      <span>
+        {#if lang}
+          {item.titleEng}
+        {:else}
+          {item.titleChn}
+        {/if}
+      </span>
+      <p>
+        {#if lang}
+          {item.contentEng}
+        {:else}
+          {item.contentChn}          
+        {/if}        
+      </p>
+    </li>
+  {:else}
+    <div class="spinn" style="text-align: center">
+       <i class="fas fa-spinner fa-spin fa-3x"></i>    
+    </div>
+  {/each}   
+   
   </ul>
 </div>
 

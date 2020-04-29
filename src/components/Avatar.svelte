@@ -56,7 +56,9 @@
       </div>
     </li>
     {:else}
-      <p>There are no data</p>
+      <div class="spinn" style="text-align: center">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>    
+      </div>
     {/each}
   </ul>
 </div>

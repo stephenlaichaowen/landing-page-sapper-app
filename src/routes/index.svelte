@@ -6,7 +6,7 @@
   import Avatar from "../components/Avatar.svelte"
   import Map from "../components/Map.svelte"
   import Footer from "../components/Footer.svelte"  
-  import { onMount } from "svelte" 
+  import { onMount } from "svelte"  
 </script>
 
 <style>
