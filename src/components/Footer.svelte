@@ -15,9 +15,9 @@
   <div class="about">
     <span>
       {#if lang}
-        About MacBurger
+        About Backyard Burger
       {:else}
-        關於多汁大漢堡
+        關於後院大漢堡
       {/if}
     </span>
     <p>
