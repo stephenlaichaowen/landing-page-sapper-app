@@ -33,7 +33,7 @@
 
   <ul class="nav">
     <li>
-      <a href="#/" class="ToFeature">
+      <a href="#section" class="ToFeature">
         {#if lang}
           Features
         {:else}
@@ -69,7 +69,7 @@
     <i class="fa fa-bars" aria-hidden="true" />    
   </a>
 </div>
-
+ 
 <style>
   ul {
     margin: 0;
