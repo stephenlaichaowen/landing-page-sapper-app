@@ -35,9 +35,9 @@
 		 </div>
 	 </div>
 	 <div class="container">
-		 <!-- <Feature />
+		 <Feature />
 		 <Chef />
-		 <Avatar /> -->
+		 <Avatar />
 		 <Map />
 	 </div>
 	 <Footer />
