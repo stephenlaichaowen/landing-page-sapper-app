@@ -18,32 +18,7 @@
   $: if (tel != "") telError = false
   $: if (email != "") emailError = false
   $: if (number != 0) numberError = false
-
-  onMount(() => {  
-    const mymap = L.map('tinymap', {
-      center: [25.0285535, 121.5406971],
-      zoom: 16
-    })
-
-    var greenIcon = new L.Icon({
-      iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    });
-
-    // 載入 openstreetmap 圖資
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'      
-    }).addTo(mymap)
-       
-    L.marker([25.0285535, 121.5406971], {icon: greenIcon,}).addTo(mymap)     
-      .bindPopup(markerTitle)
-      .openPopup()    
-  })
-
+  
   function cancelOrder() {
     const prompt = confirm(`Are you sure to clear data ?`)
     if (prompt === true) {

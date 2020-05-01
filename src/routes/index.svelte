@@ -12,7 +12,7 @@
 <style>
   .wrap {
     max-width: 1024px;    
-    margin: auto;
+    margin: -20px auto;
     font-family: "Microsoft JhengHei";
     color: #3d1101;    
   }
