@@ -11,11 +11,10 @@
 
 <style>
   .wrap {
-    max-width: 1024px;
+    max-width: 1024px;    
     margin: auto;
     font-family: "Microsoft JhengHei";
-    color: #3d1101;
-    
+    color: #3d1101;    
   }
 
   .header {

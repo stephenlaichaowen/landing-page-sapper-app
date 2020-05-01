@@ -12,23 +12,14 @@
   let emailError = false
   let numberError = false
   let tinymap
-  let lang = true
-  let markerTitle = ''
+  let markerTitle = '<p>BackYard Burger</p>'
 
   $: if (name != "") nameError = false
   $: if (tel != "") telError = false
   $: if (email != "") emailError = false
   $: if (number != 0) numberError = false
-  $: if (lang) markerTitle = '<p>BackYard Burger</p>'
-  $: if (!lang) markerTitle = '<p>後院漢堡</p>'
 
-  onMount(() => {
-    langStore.subscribe(value => { 
-      lang = value
-      if (lang) markerTitle = '<p>BackYard Burger</p>'
-      if (!lang) markerTitle = '<p>後院漢堡</p>'
-     })
-  
+  onMount(() => {  
     const mymap = L.map('tinymap', {
       center: [25.0285535, 121.5406971],
       zoom: 16
@@ -101,146 +92,75 @@
 
 <div class="map">
   <div class="map-title">
-    <span>
-      {#if lang}
-        There are no enough seats
-      {:else}
-        我們的位置不太夠坐
-      {/if}
-    </span>
-    <span>
-      {#if lang}
-        Should you make a reservation first？
-      {:else}
-        要不要先訂位呢？
-      {/if}
-    </span>
+    {#if $langStore}
+      <span>There are no enough seats</span>  
+      <span>Should you make a reservation first？</span>
+    {:else}
+      <span>我們的位置不太夠坐</span> 
+      <span>要不要先訂位呢？</span>
+    {/if}
   </div>
   <div id="tinymap" class="tinymap"></div>
   <form on:submit|preventDefault={submitOrder}>
     <label for="name">
       <span>
-        {#if lang}
-          Name
-        {:else}
-          姓名
-        {/if}
+        {#if $langStore} Name {:else} 姓名 {/if}
       </span>
       <input id="name" type="text" bind:value={name} style="margin-bottom:0" />
       {#if nameError}
         <span class="errorMessage" style="margin-bottom: 0; font-size: 12px">
-          {#if lang}
-            Name is required
-          {:else}
-            姓名不可空白
-          {/if}          
+          {#if $langStore} Name is required {:else} 姓名不可空白 {/if}          
         </span>
       {/if}
     </label>
     <label for="tel">
       <span style="margin-top:0.5rem">
-        {#if lang}
-          TEL
-        {:else}
-          電話
-        {/if}  
+        {#if $langStore} TEL {:else} 電話 {/if}  
       </span>
       <input id="tel" type="text" bind:value={tel} style="margin-bottom:0" />
       {#if telError}
         <span class="errorMessage" style="margin-bottom: 0; font-size: 12px">
-          {#if lang}
-            Telephone is required            
-          {:else}
-            電話號碼不可以空白
-          {/if}
+          {#if $langStore} Telephone is required {:else} 電話號碼不可以空白 {/if}
         </span>
       {/if}
     </label>
     <label for="email">
       <span style="margin-top:1rem">
-        {#if lang}
-          Email
-        {:else}
-          電子信箱
-        {/if}
+        {#if $langStore} Email {:else} 電子信箱 {/if}
       </span>
-      <input
-        id="email"
-        type="email"
-        bind:value={email}
-        style="margin-bottom:0" />
-      {#if emailError}
+      <input id="email" type="email" bind:value={email} style="margin-bottom:0" />
+      {#if emailError} 
         <span class="errorMessage" style="margin-bottom: 0; font-size: 12px">
-          {#if lang}
-            Email is required   
-          {:else}
-            電子郵箱不可以空白
-          {/if}          
+          {#if $langStore} Email is required {:else} 電子郵箱不可以空白 {/if}          
         </span>
       {/if}
     </label>
     <label for="number">
       <span style="margin-top:1rem">
-        {#if lang}
-          Number
-        {:else}
-          人數
-        {/if}
+        {#if $langStore} Number {:else} 人數 {/if}
       </span>
-      <input
-        id="number"
-        type="number"
-        bind:value={number}
-        style="margin-bottom:0" />
+      <input id="number" type="number" bind:value={number} style="margin-bottom:0" />
       {#if numberError}
         <span class="errorMessage" style="margin-bottom: 0; font-size: 12px">
-          {#if lang}
-            Number can't be zero             
-          {:else}
-            人數不可以為零
-          {/if}
+          {#if $langStore} Number can't be zero {:else} 人數不可以為零 {/if}
         </span>
       {/if}
     </label>
     <span style="margin-top: 1rem; margin-bottom: 0">
-      {#if lang}
-        Vegetarian 
-      {:else}
-        是否需要素食
-      {/if}
+      {#if $langStore} Vegetarian {:else} 是否需要素食 {/if}
     </span>
     <span style="margin-top: 2px">
-      {#if lang}
-        Yes
-      {:else}
-        是
-      {/if}
+      {#if $langStore} Yes {:else} 是 {/if}
       <input type="radio" value="need" bind:group={select} />
-        {#if lang}
-          No
-        {:else}
-          否
-        {/if}
+        {#if $langStore} No {:else} 否 {/if}
       <input type="radio" value="notneed" bind:group={select} />
     </span>
     <div class="sent-form">
       <a href="#/" class="cancel" on:click|preventDefault={cancelOrder}>
-        {#if lang}
-          Cancel
-        {:else}
-          取消
-        {/if}
+        {#if $langStore} Cancel {:else} 取消 {/if}
       </a>
-      <a
-        type="submit"
-        href="#/"
-        class="sent"
-        on:click|preventDefault={submitOrder}>
-        {#if lang}
-          Submit
-        {:else}
-          送出
-        {/if}
+      <a type="submit" href="#/" class="sent" on:click|preventDefault={submitOrder}>
+        {#if $langStore} Submit {:else} 送出 {/if}
       </a>
     </div>
   </form>

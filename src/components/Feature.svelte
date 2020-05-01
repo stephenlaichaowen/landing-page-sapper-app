@@ -1,71 +1,34 @@
 <script>
   import langStore from './stores/langStore.js'
   import featureStore from './stores/featureStore.js'
-  import { onMount } from 'svelte'
-
-  let lang = true
-  let loading = false
-  let data = []
-  
-  onMount(() => {
-    loading = true
-
-    langStore.subscribe(value => {
-      lang = value
-    })
-
-    featureStore.subscribe(value => {
-      data = value
-      // console.log(data);
-    })
-  })
+  import Spinner from './Spinner.svelte'
+  import { onMount } from 'svelte'  
 </script>
 
 <div class="feature">
   <div>
-    <span>
-      {#if lang}
-        People are always asking
-      {:else}
-        客人總是在詢問
-      {/if}
-    </span>
-    <span>
-      {#if lang}
-        What's the secret of being so delicious
-      {:else}
-        這麼好吃的秘訣是什麼
-      {/if}
-    </span>
+    {#if $langStore}
+      <span>People are always asking</span>
+      <span>What's the secret of being so delicious</span>
+    {:else}
+      <span>客人總是在詢問</span>
+      <span>這麼好吃的秘訣是什麼</span>    
+    {/if}
   </div>
-  <ul>
-    
-  {#each data as item}
-    <li>         
-      <img
-        src={item.image}
-        alt="" />
-      <span>
-        {#if lang}
-          {item.titleEng}
+
+  <ul>    
+    {#each $featureStore as item}
+      <li>         
+        <img src={item.image} alt="feature image" />
+        {#if $langStore}
+          <span>{item.titleEng}</span>
+          <p>{item.contentEng}</p>
         {:else}
-          {item.titleChn}
-        {/if}
-      </span>
-      <p>
-        {#if lang}
-          {item.contentEng}
-        {:else}
-          {item.contentChn}          
-        {/if}        
-      </p>
-    </li>
-  {:else}
-    <div class="spinn" style="text-align: center">
-       <i class="fas fa-spinner fa-spin fa-3x"></i>    
-    </div>
-  {/each}   
-   
+          <span>{item.titleEng}</span>
+          <p>{item.contentChn}</p>
+        {/if}      
+      </li>
+    {/each}   
   </ul>
 </div>
 
@@ -78,8 +41,6 @@
     width: 100%;
     padding-top: 5%;
     padding-bottom: 5%;
-    /* 	padding: 5%; */
-    /* 	padding-left: 0; */
     overflow: auto;
     overflow-x: hidden;
   }

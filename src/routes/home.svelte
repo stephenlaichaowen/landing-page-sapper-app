@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import avatarStore from '../components/stores/avatarStore.js'
   import langStore from '../components/stores/langStore.js'
   import featureStore from '../components/stores/featureStore.js'
@@ -196,4 +196,4 @@
   }
 </style>
 
-
+ -->

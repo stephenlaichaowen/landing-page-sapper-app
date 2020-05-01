@@ -1,64 +1,36 @@
 <script>
   import langStore from './stores/langStore.js'
   import avatarStore from './stores/avatarStore.js'
+  import Spinner from './Spinner.svelte'
   import { onMount } from 'svelte'
-
-  let lang = true
-  let data = []
-  
-  onMount(() => {
-    langStore.subscribe(value => {
-      lang = value
-    })
-
-    avatarStore.subscribe(value => {
-      data = value
-    })
-  })
 </script>
 
 <div class="avatar">
   <div>
-    {#if lang}
+    {#if $langStore}
       Listen to what others think
     {:else}
       聽聽別人的感想
     {/if}
   </div>
   <ul>
-    {#each data as item}
-    <li>
-      <img
-        src={item.image}
-        alt="" />
-      <div class="impression">
-        <span>
-          {#if lang}
-            {item.nameEng}
+    {#each $avatarStore as item}
+      <li>
+        <img src={item.image} alt="" />
+        <div class="impression">
+          {#if $langStore}
+            <span>{item.nameEng}</span>
+            <span>{item.contentEng}</span>
+            <span>{item.titleEng}</span>
           {:else}
-            {item.nameChn}
+            <span>{item.nameChn}</span>
+            <span>{item.contentChn}</span>
+            <span>{item.titleChn}</span>
           {/if}
-        </span>
-        <span>
-          {#if lang}
-            {item.contentEng}
-          {:else}
-            {item.contentChn}
-          {/if}
-        </span>
-        <span>
-          {#if lang}
-            {item.titleEng}
-          {:else}
-            {item.titleChn}
-          {/if}
-        </span>
-      </div>
-    </li>
+        </div>
+      </li>
     {:else}
-      <div class="spinn" style="text-align: center">
-        <i class="fas fa-spinner fa-spin fa-3x"></i>    
-      </div>
+      <Spinner />
     {/each}
   </ul>
 </div>
