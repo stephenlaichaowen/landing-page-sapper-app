@@ -1,5 +1,6 @@
 <script>
   import langStore from './stores/langStore.js'
+  import OpenStreetMap from './OpenStreetMap.svelte'
   import { onMount } from 'svelte'
 
   let name
@@ -11,7 +12,6 @@
   let telError = false
   let emailError = false
   let numberError = false
-  let tinymap
   let markerTitle = '<p>BackYard Burger</p>'
 
   $: if (name != "") nameError = false
@@ -100,7 +100,7 @@
       <span>要不要先訂位呢？</span>
     {/if}
   </div>
-  <div id="tinymap" class="tinymap"></div>
+  <OpenStreetMap />
   <form on:submit|preventDefault={submitOrder}>
     <label for="name">
       <span>
@@ -192,17 +192,6 @@
     float: left;
     line-height: 30px;
     text-align: center;
-  }
-  .map .tinymap {
-    height: 386px;
-    width: 50%;
-    float: left;
-    border: 1px solid #d0d0d0;
-  }
-  @media (max-width: 414px) {
-    .map .tinymap {
-      width: 100%;
-    }
   }
   .map form {
     float: right;
