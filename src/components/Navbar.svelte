@@ -2,23 +2,15 @@
   import langStore from './stores/langStore.js'
   import { onMount } from 'svelte'
 
-  let menu = false;
-  let lang = true
-
-  function toggleMenu() {
-    menu = !menu   
-  }
+  // let menu = false;
+  // function toggleMenu() {
+  //   menu = !menu   
+  // }
 
   function switchLanguage() {
     lang = !lang
     langStore.set(lang)
-  }
-
-  onMount(() => {
-    langStore.subscribe(value => {
-      lang = value
-    })
-  })
+  }  
 </script>
 
 <div class="top">
@@ -34,29 +26,17 @@
   <ul class="nav">
     <li>
       <a href="#section" class="ToFeature">
-        {#if lang}
-          Features
-        {:else}
-          特色
-        {/if}
+        {#if $langStore} Features {:else} 特色 {/if}
       </a>
     </li>
     <li>
       <a href="#/" class="ToChief">
-        {#if lang}
-          Chef
-        {:else}
-          主廚
-        {/if}
+        {#if $langStore} Chef {:else} 主廚 {/if}
       </a>
     </li>
     <li>
       <a href="#/" class="ToMap">
-        {#if lang}
-          Map
-        {:else}
-          地圖
-        {/if}
+        {#if $langStore} Map {:else} 地圖 {/if}
       </a>
     </li>
     <li>
